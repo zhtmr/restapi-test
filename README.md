@@ -1,1 +1,6 @@
-#
+- exception handling
+- internationalization
+- validation
+- filtering
+- versioning
+- HATEOAS
