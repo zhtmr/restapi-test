@@ -29,11 +29,11 @@ public class AdminUserController {
     this.userDaoService = userDaoService;
   }
 
-//  @GetMapping("/v1/users/{id}")
-//  @GetMapping(value = "/users/{id}", params = "v=1")
-//  @GetMapping(value = "/users/{id}", headers = "X-API-VERSION=1")
+  //  @GetMapping("/v1/users/{id}")
+  //  @GetMapping(value = "/users/{id}", params = "v=1")
+  //  @GetMapping(value = "/users/{id}", headers = "X-API-VERSION=1")
   @GetMapping(value = "/users/{id}", produces = "application/ex.restapi.test1+json")
-public MappingJacksonValue retrieveAdminUser(@PathVariable int id) {
+  public MappingJacksonValue retrieveAdminUser(@PathVariable int id) {
     User user = userDaoService.findOne(id);
     AdminUser adminUser = new AdminUser();
     if (user == null) {
@@ -71,9 +71,9 @@ public MappingJacksonValue retrieveAdminUser(@PathVariable int id) {
     return mapping;
   }
 
-//  @GetMapping("/v2/users/{id}")
-//  @GetMapping(value = "/users/{id}", params = "v=2")
-@GetMapping(value = "/users/{id}", produces = "application/ex.restapi.test2+json")
+  //  @GetMapping("/v2/users/{id}")
+  //  @GetMapping(value = "/users/{id}", params = "v=2")
+  @GetMapping(value = "/users/{id}", produces = "application/ex.restapi.test2+json")
   public MappingJacksonValue retrieveAdminUser2(@PathVariable int id) {
     User user = userDaoService.findOne(id);
     AdminUserV2 adminUser = new AdminUserV2();
