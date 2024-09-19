@@ -37,7 +37,9 @@ public class UserController {
     }
     EntityModel entityModel = EntityModel.of(user);
     WebMvcLinkBuilder linTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+    WebMvcLinkBuilder selLink = linkTo(methodOn(this.getClass()).retrieveUser(id));
     entityModel.add(linTo.withRel("all-users"));  // http://localhost:8088/users
+    entityModel.add(selLink.withSelfRel());
     return entityModel;
   }
 
