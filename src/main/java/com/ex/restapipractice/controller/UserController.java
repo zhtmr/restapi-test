@@ -3,7 +3,7 @@ package com.ex.restapipractice.controller;
 import com.ex.restapipractice.bean.User;
 import com.ex.restapipractice.dao.UserDaoService;
 import com.ex.restapipractice.exception.UserNotFoundException;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +39,7 @@ public class UserController {
     WebMvcLinkBuilder linTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
     WebMvcLinkBuilder selLink = linkTo(methodOn(this.getClass()).retrieveUser(id));
     entityModel.add(linTo.withRel("all-users"));  // http://localhost:8088/users
-    entityModel.add(selLink.withSelfRel());
+    entityModel.add(selLink.withSelfRel());    // http://localhost:8088/users/2
     return entityModel;
   }
 
