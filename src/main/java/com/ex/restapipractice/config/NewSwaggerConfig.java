@@ -29,7 +29,9 @@ public class NewSwaggerConfig {
   public GroupedOpenApi customTestOpenApi() {
     String[] paths = {"/users/**", "/admin/**"};
 
-    return GroupedOpenApi.builder().group("일반 사용자와 관리자를 위한 User 도메인에 대한 API").pathsToMatch(paths)
+    return GroupedOpenApi.builder()
+        .group("일반 사용자와 관리자를 위한 User 도메인에 대한 API")
+        .pathsToMatch(paths)
         .build();
   }
 

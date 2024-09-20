@@ -3,7 +3,7 @@ server:
 
 logging:
   level:
-    org.springframework: debug
+    org.springframework: info
 
 spring:
   messages:
@@ -11,6 +11,10 @@ spring:
 #  mvc:
 #    pathmatch:
 #      matching-strategy: ant_path_matcher
+#  security:
+#    user:
+#      name: username
+#      password: 1234
 
 management:
   endpoints:
