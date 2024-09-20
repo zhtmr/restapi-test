@@ -3,7 +3,7 @@ package com.ex.restapipractice.controller;
 import com.ex.restapipractice.bean.User;
 import com.ex.restapipractice.dao.UserDaoService;
 import com.ex.restapipractice.exception.UserNotFoundException;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
