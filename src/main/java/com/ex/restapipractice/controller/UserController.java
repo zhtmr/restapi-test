@@ -3,6 +3,11 @@ package com.ex.restapipractice.controller;
 import com.ex.restapipractice.bean.User;
 import com.ex.restapipractice.dao.UserDaoService;
 import com.ex.restapipractice.exception.UserNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -17,6 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@Tag(name = "user-controller", description = "일반 사용자 서비스를 위한 컨트롤러입니다.")
 public class UserController {
   private UserDaoService userDaoService;
 
@@ -29,8 +35,16 @@ public class UserController {
     return userDaoService.findAll();
   }
 
+  @Operation(summary = "사용자 정보 조회 API", description = "사용자 ID 를 이용해서 사용자 상세 정보 조회를 합니다.")
+  @ApiResponses({
+      @ApiResponse(responseCode = "200", description = "OK !!"),
+      @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
+      @ApiResponse(responseCode = "404", description = "USER NOT FOUND !!"),
+      @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!"),
+  })
   @GetMapping("/users/{id}")
-  public EntityModel<User> retrieveUser(@PathVariable int id) {
+  public EntityModel<User> retrieveUser(
+      @Parameter(description = "사용자 ID", required = true, example = "1") @PathVariable int id) {
     User user = userDaoService.findOne(id);
     if (user == null) {
       throw new UserNotFoundException(String.format("ID[%s] not found", id));
