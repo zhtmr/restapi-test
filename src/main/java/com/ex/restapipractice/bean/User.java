@@ -2,10 +2,7 @@ package com.ex.restapipractice.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -14,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -44,4 +42,14 @@ public class User {
   @Schema(title = "사용자 주민번호", description = "사용자 주민번호를 입력합니다.")
   private String ssn;
 
+  @OneToMany(mappedBy = "user")
+  private List<Post> posts;
+
+  public User(Integer id, String name, Date joinDate, String password, String ssn) {
+    this.name = name;
+    this.id = id;
+    this.joinDate = joinDate;
+    this.password = password;
+    this.ssn = ssn;
+  }
 }
